@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FresherCheck.in - Real or Fake Job Checker</title>
+<title>FresherCheck.in - Job Scam Checker</title>
 
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',Arial,sans-serif;
+    font-family:"Segoe UI",Arial,sans-serif;
 }
 
 body{
     background:#f5f7fb;
-    color:#1a2a4a;
+    color:#17233c;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
+
 header{
-    background:#fff;
-    padding:12px 5%;
+    background:#ffffff;
+    padding:13px 6%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 2px 10px #0001;
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:100;
 }
 
-.logo-area{
+.logo{
     display:flex;
     align-items:center;
     gap:10px;
+    font-size:23px;
     font-weight:800;
-    font-size:22px;
 }
 
-.logo-area img{
-    height:40px;
+.logo img{
     width:40px;
+    height:40px;
     object-fit:contain;
+}
+
+.logo span{
+    color:#1687ff;
 }
 
 .trust{
@@ -51,198 +67,253 @@ header{
     font-weight:600;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
-    background:linear-gradient(135deg,#1a8cff 0%,#00d18f 100%);
-    color:#fff;
-    padding:70px 5%;
+    background:linear-gradient(
+        135deg,
+        #1687ff,
+        #00c98b
+    );
+
+    color:white;
     text-align:center;
+    padding:65px 6%;
 }
 
 .hero h1{
-    font-size:40px;
+    font-size:42px;
     margin-bottom:12px;
 }
 
 .hero p{
-    font-size:18px;
-    opacity:.95;
-    max-width:750px;
+    max-width:760px;
     margin:auto;
+    font-size:18px;
+    line-height:1.6;
 }
 
-/* SEARCH */
-.search-box{
-    background:#fff;
-    max-width:750px;
-    margin:30px auto 0;
-    display:flex;
-    border-radius:50px;
-    padding:6px;
-    box-shadow:0 10px 30px #0003;
+
+/* =========================
+   CHECKER
+========================= */
+
+.checker{
+    max-width:850px;
+    margin:-35px auto 40px;
+    background:white;
+    border-radius:22px;
+    padding:28px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+    position:relative;
+    z-index:5;
 }
 
-.search-box input{
-    flex:1;
-    border:none;
-    padding:18px 25px;
-    font-size:17px;
-    border-radius:50px;
-    outline:none;
-    color:#222;
+.field{
+    margin-bottom:17px;
 }
 
-.search-box button{
-    background:#1a2a4a;
-    color:#fff;
-    border:none;
-    padding:0 30px;
-    border-radius:50px;
+.field label{
+    display:block;
+    margin-bottom:7px;
+    font-size:14px;
     font-weight:700;
+}
+
+.field input,
+.field textarea{
+    width:100%;
+    border:1px solid #dce2eb;
+    border-radius:12px;
+    padding:14px;
     font-size:15px;
+    outline:none;
+    transition:.2s;
+}
+
+.field input:focus,
+.field textarea:focus{
+    border-color:#1687ff;
+    box-shadow:0 0 0 3px rgba(22,135,255,.1);
+}
+
+.field textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+.check-btn{
+    width:100%;
+    border:none;
+    border-radius:13px;
+    padding:16px;
+    background:#17233c;
+    color:white;
+    font-size:17px;
+    font-weight:800;
     cursor:pointer;
     transition:.3s;
 }
 
-.search-box button:hover{
+.check-btn:hover{
     background:#000;
+    transform:translateY(-1px);
 }
 
-/* RESULT CARD */
-.card{
-    max-width:750px;
-    margin:30px auto;
-    background:#fff;
-    border-radius:20px;
-    padding:28px;
-    box-shadow:0 8px 25px #0001;
+
+/* =========================
+   RESULT
+========================= */
+
+.result{
+    max-width:850px;
+    margin:0 auto 40px;
+    background:white;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
     display:none;
-    animation:pop .4s ease;
 }
 
-@keyframes pop{
-    from{
-        transform:translateY(20px);
-        opacity:0;
-    }
-    to{
-        transform:translateY(0);
-        opacity:1;
-    }
-}
-
-/* SCORE */
 .score{
-    font-size:64px;
-    font-weight:900;
     text-align:center;
+    font-size:68px;
+    font-weight:900;
 }
 
 .green{
     color:#00a844;
 }
 
+.yellow{
+    color:#f39c12;
+}
+
 .red{
     color:#e53935;
 }
 
-.yellow{
-    color:#ff9800;
+.badge-area{
+    text-align:center;
+    margin:8px 0 25px;
 }
 
 .badge{
-    padding:8px 18px;
-    border-radius:20px;
-    font-weight:700;
     display:inline-block;
+    padding:9px 20px;
+    border-radius:30px;
+    font-weight:800;
 }
 
-.bg-green{
-    background:#e6f9ec;
+.badge-green{
+    background:#e6f8ed;
     color:#08752f;
 }
 
-.bg-red{
-    background:#ffe9e6;
+.badge-yellow{
+    background:#fff3d6;
+    color:#946200;
+}
+
+.badge-red{
+    background:#ffe7e5;
     color:#c62828;
 }
 
-.bg-yellow{
-    background:#fff4d6;
-    color:#9a6700;
-}
 
-/* CHECK GRID */
-.grid{
+/* =========================
+   CHECK RESULTS
+========================= */
+
+.results-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:15px;
+    gap:13px;
+    margin-top:18px;
 }
 
-.check{
-    padding:13px;
-    background:#f8fafc;
-    border-radius:10px;
+.result-item{
+    padding:15px;
+    background:#f7f9fc;
+    border-radius:12px;
+    border-left:4px solid #1687ff;
+    line-height:1.5;
     font-size:14px;
-    border-left:4px solid #1a8cff;
 }
 
-/* ADVICE */
+
+/* =========================
+   ADVICE
+========================= */
+
 .advice{
-    margin-top:20px;
-    padding:16px;
+    margin-top:25px;
+    padding:18px;
+    border-radius:13px;
     background:#f1f5f9;
-    border-radius:10px;
     line-height:1.6;
 }
 
-/* FEATURES */
+.advice strong{
+    display:block;
+    margin-bottom:7px;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
 .features{
-    padding:40px 5%;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:20px;
     max-width:1100px;
     margin:auto;
+    padding:20px 6% 60px;
+    display:grid;
+    grid-template-columns:repeat(
+        auto-fit,
+        minmax(250px,1fr)
+    );
+    gap:20px;
 }
 
-.fbox{
-    background:#fff;
+.feature{
+    background:white;
     padding:25px;
-    border-radius:16px;
-    box-shadow:0 4px 15px #0001;
-    transition:.3s;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.07);
 }
 
-.fbox:hover{
-    transform:translateY(-5px);
+.feature h3{
+    margin-bottom:12px;
 }
 
-.fbox h3{
-    margin-bottom:10px;
-}
-
-.fbox p{
-    line-height:1.8;
-}
-
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:30px 5%;
-    margin-top:20px;
-    background:#1a2a4a;
-    color:#fff;
+.feature p{
+    line-height:1.7;
     font-size:14px;
 }
 
-/* MOBILE */
-@media(max-width:650px){
 
-    header{
-        padding:12px 4%;
-    }
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#17233c;
+    color:white;
+    text-align:center;
+    padding:30px 6%;
+    font-size:14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
 
     .trust{
         display:none;
@@ -253,56 +324,55 @@ footer{
     }
 
     .hero h1{
-        font-size:30px;
+        font-size:31px;
     }
 
     .hero p{
         font-size:16px;
     }
 
-    .search-box{
-        flex-direction:column;
-        border-radius:18px;
-        gap:8px;
-    }
-
-    .search-box input{
-        padding:16px;
-    }
-
-    .search-box button{
-        height:50px;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .card{
-        margin:20px 5%;
+    .checker{
+        margin:-25px 5% 30px;
         padding:20px;
     }
 
-    .score{
-        font-size:52px;
+    .result{
+        margin:0 5% 30px;
+        padding:20px;
     }
+
+    .results-grid{
+        grid-template-columns:1fr;
+    }
+
+    .score{
+        font-size:55px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-    <div class="logo-area">
+    <div class="logo">
 
-        <img src="logo.jpeg"
-             onerror="this.style.display='none'">
+        <img
+            src="logo.jpeg"
+            onerror="this.style.display='none'"
+        >
 
-        <span>
-            FresherCheck<span style="color:#1a8cff">.in</span>
-        </span>
+        FresherCheck<span>.in</span>
 
     </div>
 
@@ -313,135 +383,280 @@ footer{
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
 
-    <h1>Job Real or Fake? 🔍</h1>
+    <h1>
+        Is This Job Real or Fake? 🔍
+    </h1>
 
     <p>
-        Company name, recruiter email, salary or job message
-        check maadi before you apply or pay.
+        Company name, recruiter email, salary,
+        website, WhatsApp number or complete job
+        message paste maadi. We'll check common
+        recruitment scam signals.
     </p>
-
-    <div class="search-box">
-
-        <input
-            id="companyInput"
-            placeholder="Ex: Infosys, TCS, recruiter@gmail.com"
-        >
-
-        <button onclick="checkJob()">
-            CHECK NOW
-        </button>
-
-    </div>
 
 </section>
 
 
-<!-- RESULT -->
-<div id="result" class="card">
+<!-- =========================
+     CHECKER FORM
+========================= -->
 
-    <div id="score" class="score">
+<section class="checker">
+
+
+    <div class="field">
+
+        <label>
+            🏢 Company Name
+        </label>
+
+        <input
+            id="company"
+            placeholder="Example: Infosys"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            📧 Recruiter Email
+        </label>
+
+        <input
+            id="email"
+            placeholder="Example: recruiter@company.com"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            📱 Recruiter Phone / WhatsApp
+        </label>
+
+        <input
+            id="phone"
+            placeholder="Example: +91 9876543210"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            💰 Salary Offered
+        </label>
+
+        <input
+            id="salary"
+            placeholder="Example: ₹8 LPA"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            💳 Any Fee Requested?
+        </label>
+
+        <input
+            id="fee"
+            placeholder="Example: ₹2,000 registration fee"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            🌐 Company / Job Website
+        </label>
+
+        <input
+            id="website"
+            placeholder="Example: https://company.com/careers"
+        >
+
+    </div>
+
+
+    <div class="field">
+
+        <label>
+            📄 Paste Job Message / Offer Details
+        </label>
+
+        <textarea
+            id="message"
+            placeholder="Paste the WhatsApp message, email, job description or offer letter text here..."
+        ></textarea>
+
+    </div>
+
+
+    <button
+        class="check-btn"
+        onclick="checkJob()"
+    >
+
+        🔍 CHECK JOB NOW
+
+    </button>
+
+</section>
+
+
+<!-- =========================
+     RESULT
+========================= -->
+
+<section
+    id="result"
+    class="result"
+>
+
+    <div
+        id="score"
+        class="score"
+    >
         --
     </div>
 
-    <div style="text-align:center;margin-top:5px;">
-        <span id="badge" class="badge">
+
+    <div class="badge-area">
+
+        <span
+            id="badge"
+            class="badge"
+        >
             --
         </span>
+
     </div>
 
-    <h3 style="margin-top:25px;">
+
+    <h2>
         🔍 Verification Report
-    </h3>
-
-    <div id="checks" class="grid"></div>
-
-    <div id="advice" class="advice"></div>
-
-</div>
+    </h2>
 
 
-<!-- FEATURES -->
-<section class="features">
-
-    <div class="fbox">
-
-        <h3>🚩 Common Scam Signs</h3>
-
-        <p>
-            ❌ Registration fee<br>
-            ❌ Gmail/Yahoo recruiter<br>
-            ❌ WhatsApp-only hiring<br>
-            ❌ Direct job without interview<br>
-            ❌ Unrealistic salary<br>
-            ❌ Urgent payment request
-        </p>
-
-    </div>
+    <div
+        id="resultsGrid"
+        class="results-grid"
+    ></div>
 
 
-    <div class="fbox">
-
-        <h3>✅ Genuine Job Signs</h3>
-
-        <p>
-            ✅ Official company website<br>
-            ✅ Official career page<br>
-            ✅ Proper interview process<br>
-            ✅ No recruitment fee<br>
-            ✅ Verifiable recruiter<br>
-            ✅ Company details available
-        </p>
-
-    </div>
-
-
-    <div class="fbox">
-
-        <h3>🛡️ Remember</h3>
-
-        <p>
-            A real company name does not automatically
-            mean the job offer is real.
-            Scammers often impersonate famous companies.
-        </p>
-
-    </div>
+    <div
+        id="advice"
+        class="advice"
+    ></div>
 
 </section>
 
 
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="features">
+
+
+    <div class="feature">
+
+        <h3>
+            🚩 Common Scam Signs
+        </h3>
+
+        <p>
+            Registration fees, security deposits,
+            Gmail-only recruitment, WhatsApp-only
+            hiring, direct selection and unrealistic
+            salary promises can require extra verification.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <h3>
+            ✅ Genuine Job Signs
+        </h3>
+
+        <p>
+            Official careers page, company-domain
+            communication, proper interview process,
+            verifiable recruiter and no recruitment
+            payment are useful positive signals.
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <h3>
+            🛡️ Stay Safe
+        </h3>
+
+        <p>
+            Never share OTPs, passwords or banking
+            credentials. Never pay money simply because
+            someone promises a job.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
-    © 2026 FresherCheck.in |
-    Stay Safe. Verify Before You Apply.
+    © 2026 FresherCheck.in
+    <br><br>
+    Verify Before You Apply • Stay Safe
 
 </footer>
 
 
 <script>
 
+
 /* =====================================================
    COMPANY DATABASE
-   ===================================================== */
+===================================================== */
+
 
 const companyDB = {
 
-    /*
-       Known legitimate organizations.
 
-       IMPORTANT:
-       These names only indicate that the organization
-       itself is legitimate.
-
-       A scammer can still impersonate them.
-    */
+    /* --------------------------------
+       LEGITIMATE ORGANIZATIONS
+    -------------------------------- */
 
     real: [
 
-        /* IT / TECHNOLOGY */
+        /* IT */
+
         "infosys",
         "tcs",
         "tata consultancy services",
@@ -468,7 +683,8 @@ const companyDB = {
         "cisco",
         "qualcomm",
 
-        /* CONSULTING / PROFESSIONAL SERVICES */
+        /* CONSULTING */
+
         "deloitte",
         "kpmg",
         "ey",
@@ -476,7 +692,8 @@ const companyDB = {
         "pwc",
         "pricewaterhousecoopers",
 
-        /* E-COMMERCE / INTERNET */
+        /* E-COMMERCE / STARTUPS */
+
         "flipkart",
         "myntra",
         "meesho",
@@ -484,8 +701,6 @@ const companyDB = {
         "zomato",
         "ola",
         "uber",
-
-        /* INDIAN TECH / STARTUPS */
         "phonepe",
         "razorpay",
         "paytm",
@@ -495,7 +710,8 @@ const companyDB = {
         "zerodha",
         "policybazaar",
 
-        /* BANKING / FINANCE */
+        /* BANKS */
+
         "hdfc bank",
         "icici bank",
         "axis bank",
@@ -505,20 +721,20 @@ const companyDB = {
         "yes bank",
 
         /* TELECOM */
+
         "airtel",
         "jio",
         "reliance jio",
         "vodafone idea",
         "vi"
+
     ],
 
 
-    /*
-       Organizations / websites that have been officially
-       identified in recruitment-fraud warnings.
-
-       Keep this list evidence-based.
-    */
+    /* --------------------------------
+       DOCUMENTED RECRUITMENT SCAM
+       ENTITIES / WEBSITES
+    -------------------------------- */
 
     documentedScams: [
 
@@ -533,12 +749,10 @@ const companyDB = {
     ],
 
 
-    /*
-       Genuine organizations whose names have been used
-       by fraudulent recruiters / fake recruitment messages.
-
-       DO NOT call these organizations fake.
-    */
+    /* --------------------------------
+       REAL ORGANIZATIONS THAT HAVE
+       BEEN IMPERSONATED
+    -------------------------------- */
 
     impersonated: [
 
@@ -559,9 +773,10 @@ const companyDB = {
 
 /* =====================================================
    SCAM KEYWORDS
-   ===================================================== */
+===================================================== */
 
-const scamKeywords = [
+
+const scamWords = [
 
     "registration fee",
     "registration fees",
@@ -570,6 +785,8 @@ const scamKeywords = [
     "training fee",
     "joining fee",
     "application fee",
+    "interview fee",
+    "verification fee",
     "pay now",
     "pay rs",
     "pay ₹",
@@ -577,19 +794,21 @@ const scamKeywords = [
     "deposit money",
     "payment required",
     "fee required",
-    "money transfer",
-    "upi payment"
+    "upi payment",
+    "money transfer"
 
 ];
 
 
 /* =====================================================
-   FAKE JOB PATTERNS
-   ===================================================== */
+   SUSPICIOUS PHRASES
+===================================================== */
 
-const suspiciousPatterns = [
+
+const suspiciousWords = [
 
     "no interview",
+    "without interview",
     "direct joining",
     "direct selection",
     "guaranteed job",
@@ -597,235 +816,458 @@ const suspiciousPatterns = [
     "urgent hiring",
     "limited seats",
     "pay and join",
+    "earn money",
     "work from home earn",
-    "earn 50000",
-    "earn 1 lakh",
-    "earn 100000"
+    "selected immediately",
+    "job confirmed",
+    "offer confirmed"
 
 ];
 
 
 /* =====================================================
-   MAIN CHECK FUNCTION
-   ===================================================== */
+   MAIN FUNCTION
+===================================================== */
+
 
 function checkJob(){
 
-    const input =
-        document.getElementById("companyInput");
 
-    const q =
-        input.value.toLowerCase().trim();
+    const company =
+        document
+        .getElementById("company")
+        .value
+        .toLowerCase()
+        .trim();
 
 
-    if(!q){
+    const email =
+        document
+        .getElementById("email")
+        .value
+        .toLowerCase()
+        .trim();
 
-        alert("Company hesaru or job message haku guru!");
+
+    const phone =
+        document
+        .getElementById("phone")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const salary =
+        document
+        .getElementById("salary")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const fee =
+        document
+        .getElementById("fee")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const website =
+        document
+        .getElementById("website")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const message =
+        document
+        .getElementById("message")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    /* --------------------------------
+       REQUIRE SOME INPUT
+    -------------------------------- */
+
+    if(
+        !company &&
+        !email &&
+        !phone &&
+        !salary &&
+        !fee &&
+        !website &&
+        !message
+    ){
+
+        alert(
+            "Guru, at least company name or job message enter maadi!"
+        );
 
         return;
     }
 
 
-    let score = 50;
+    let score = 70;
 
     let checks = [];
 
 
-    /* -----------------------------------------------
-       1. EMAIL CHECK
-    ------------------------------------------------ */
+    const fullText =
+        (
+            company + " " +
+            email + " " +
+            phone + " " +
+            salary + " " +
+            fee + " " +
+            website + " " +
+            message
+        ).toLowerCase();
 
-    if(
-        q.includes("@gmail.com") ||
-        q.includes("@yahoo.com") ||
-        q.includes("@outlook.com")
-    ){
 
-        score -= 20;
+    /* =================================================
+       COMPANY CHECK
+    ================================================= */
 
-        checks.push(
-            "⚠️ Personal email detected. Verify whether the recruiter is officially connected to the company."
-        );
+
+    if(company){
+
+        const isReal =
+            companyDB.real.some(
+                name =>
+                company.includes(name) ||
+                name.includes(company)
+            );
+
+
+        const isDocumentedScam =
+            companyDB.documentedScams.some(
+                name =>
+                company.includes(name)
+            );
+
+
+        const isImpersonated =
+            companyDB.impersonated.some(
+                name =>
+                company.includes(name)
+            );
+
+
+        if(isDocumentedScam){
+
+            score -= 45;
+
+            checks.push(
+                "🔴 Documented recruitment-fraud entity/website detected."
+            );
+
+        }
+
+
+        else if(isReal){
+
+            score += 10;
+
+            checks.push(
+                "🟢 Recognized legitimate organization name detected."
+            );
+
+            checks.push(
+                "⚠️ A genuine company name does NOT prove that the recruiter or job offer is genuine."
+            );
+
+        }
+
+
+        else if(isImpersonated){
+
+            score -= 5;
+
+            checks.push(
+                "⚠️ This organization has been used in impersonation/fraudulent recruitment communications."
+            );
+
+        }
+
+
+        else{
+
+            checks.push(
+                "🟡 Company not found in this local database. Verify the company independently."
+            );
+
+        }
 
     }
 
 
-    /* -----------------------------------------------
-       2. OFFICIAL DOMAIN INDICATOR
-    ------------------------------------------------ */
+    /* =================================================
+       EMAIL CHECK
+    ================================================= */
 
-    else if(
-        q.includes(".com") ||
-        q.includes(".in")
-    ){
 
-        score += 10;
+    if(email){
 
-        checks.push(
-            "✅ A website/domain was detected. Verify that it is the company's official domain."
-        );
+        if(
+            email.includes("@gmail.com") ||
+            email.includes("@yahoo.com") ||
+            email.includes("@outlook.com") ||
+            email.includes("@hotmail.com")
+        ){
+
+            score -= 20;
+
+            checks.push(
+                "⚠️ Personal email provider detected. Verify whether the recruiter is officially connected to the company."
+            );
+
+        }
+
+
+        else{
+
+            score += 5;
+
+            checks.push(
+                "🟢 Business-style email domain detected. Still verify that the domain belongs to the company."
+            );
+
+        }
 
     }
 
 
-    /* -----------------------------------------------
-       3. DOCUMENTED SCAM DATABASE
-    ------------------------------------------------ */
+    /* =================================================
+       PHONE CHECK
+    ================================================= */
 
-    if(
-        companyDB.documentedScams.some(
-            scam => q.includes(scam)
+
+    if(phone){
+
+        if(
+            fullText.includes("whatsapp") ||
+            fullText.includes("telegram")
+        ){
+
+            score -= 15;
+
+            checks.push(
+                "⚠️ WhatsApp/Telegram recruitment detected. Verify through the company's official careers page."
+            );
+
+        }
+
+
+        if(phone.length > 0){
+
+            checks.push(
+                "📱 Phone number entered. Do not trust caller ID alone; independently verify the recruiter."
+            );
+
+        }
+
+    }
+
+
+    /* =================================================
+       FEE CHECK
+    ================================================= */
+
+
+    const hasFeeSignal =
+
+        scamWords.some(
+            word =>
+            fullText.includes(word)
         )
-    ){
-
-        score -= 50;
-
-        checks.push(
-            "🔴 This name/website appears in documented recruitment-fraud warnings. Do not pay or share sensitive information."
-        );
-
-    }
+        ||
+        fee.length > 0;
 
 
-    /* -----------------------------------------------
-       4. REAL COMPANY DATABASE
-    ------------------------------------------------ */
-
-    if(
-        companyDB.real.some(
-            company => q.includes(company)
-        )
-    ){
-
-        score += 15;
-
-        checks.push(
-            "🟢 Recognized legitimate company name detected. This does NOT prove that the particular job message is genuine."
-        );
-
-    }
-
-
-    /* -----------------------------------------------
-       5. IMPERSONATION DATABASE
-    ------------------------------------------------ */
-
-    if(
-        companyDB.impersonated.some(
-            company => q.includes(company)
-        )
-    ){
-
-        score -= 5;
-
-        checks.push(
-            "⚠️ This organization's name has been used in fraudulent recruitment communications. Verify through its official website."
-        );
-
-    }
-
-
-    /* -----------------------------------------------
-       6. SCAM KEYWORDS
-    ------------------------------------------------ */
-
-    const foundScamKeywords =
-        scamKeywords.filter(
-            word => q.includes(word)
-        );
-
-
-    if(foundScamKeywords.length > 0){
+    if(hasFeeSignal){
 
         score -= 35;
 
         checks.push(
-            "🔴 Payment/fee-related scam language detected."
+            "🔴 Payment/fee-related warning detected. Do not pay recruitment or interview fees."
         );
 
     }
 
 
-    /* -----------------------------------------------
-       7. SUSPICIOUS JOB PATTERNS
-    ------------------------------------------------ */
+    /* =================================================
+       SUSPICIOUS LANGUAGE
+    ================================================= */
 
-    const foundPatterns =
-        suspiciousPatterns.filter(
-            word => q.includes(word)
+
+    const suspiciousFound =
+
+        suspiciousWords.filter(
+            word =>
+            fullText.includes(word)
         );
 
 
-    if(foundPatterns.length > 0){
+    if(suspiciousFound.length > 0){
 
         score -= 20;
 
         checks.push(
-            "⚠️ Suspicious recruitment language detected."
+            "⚠️ Suspicious recruitment language detected: " +
+            suspiciousFound.slice(0,3).join(", ")
         );
 
     }
 
 
-    /* -----------------------------------------------
-       8. WHATSAPP / TELEGRAM
-    ------------------------------------------------ */
-
-    if(
-        q.includes("whatsapp") ||
-        q.includes("telegram")
-    ){
-
-        score -= 15;
-
-        checks.push(
-            "⚠️ WhatsApp/Telegram recruitment detected. Verify the recruiter independently."
-        );
-
-    }
+    /* =================================================
+       WEBSITE CHECK
+    ================================================= */
 
 
-    /* -----------------------------------------------
-       9. UNREALISTIC SALARY
-    ------------------------------------------------ */
+    if(website){
 
-    if(
-        q.includes("1 lakh") ||
-        q.includes("100000") ||
-        q.includes("₹1,00,000") ||
-        q.includes("50000") ||
-        q.includes("50,000")
-    ){
+        if(
+            website.includes("bit.ly") ||
+            website.includes("tinyurl") ||
+            website.includes("shorturl")
+        ){
 
-        score -= 15;
+            score -= 15;
 
-        checks.push(
-            "⚠️ Very high salary claim detected. Compare the role and salary with the company's official job posting."
-        );
+            checks.push(
+                "⚠️ URL shortener detected. Verify the final destination before opening or submitting information."
+            );
+
+        }
+
+
+        else{
+
+            checks.push(
+                "🌐 Website provided. Verify that the domain exactly matches the company's official website."
+            );
+
+        }
 
     }
 
 
-    /* -----------------------------------------------
-       10. GENERAL VERIFICATION CHECKS
-    ------------------------------------------------ */
+    /* =================================================
+       SALARY CHECK
+    ================================================= */
+
+
+    if(salary){
+
+        const highSalarySignals = [
+
+            "1 lakh",
+            "100000",
+            "1,00,000",
+            "50000",
+            "50,000",
+            "₹1 lakh",
+            "₹50000"
+
+        ];
+
+
+        if(
+            highSalarySignals.some(
+                word =>
+                salary.includes(word)
+            )
+        ){
+
+            score -= 15;
+
+            checks.push(
+                "⚠️ Unusually high salary claim detected. Compare it with the official job listing."
+            );
+
+        }
+
+        else{
+
+            checks.push(
+                "💰 Salary entered. Salary alone cannot prove whether a job is genuine."
+            );
+
+        }
+
+    }
+
+
+    /* =================================================
+       MESSAGE CHECK
+    ================================================= */
+
+
+    if(message){
+
+        if(
+            message.includes("otp") ||
+            message.includes("password") ||
+            message.includes("bank account") ||
+            message.includes("cvv") ||
+            message.includes("pin")
+        ){
+
+            score -= 25;
+
+            checks.push(
+                "🔴 Message requests highly sensitive information. Do not share OTPs, passwords, PINs or CVV."
+            );
+
+        }
+
+
+        if(
+            message.includes("pay") ||
+            message.includes("fee") ||
+            message.includes("deposit")
+        ){
+
+            score -= 20;
+
+            checks.push(
+                "🔴 Job message contains payment-related language."
+            );
+
+        }
+
+    }
+
+
+    /* =================================================
+       GENERAL CHECKS
+    ================================================= */
+
 
     checks.push(
-        "🔎 Verify the vacancy on the company's official careers page."
+        "🔎 Check the vacancy on the company's official careers page."
     );
+
 
     checks.push(
-        "🔎 Never pay a recruitment, interview, registration or security fee."
+        "🔎 Never pay money just to get a job or interview."
     );
+
 
     checks.push(
-        "🔎 Verify recruiter email, phone number and company domain separately."
+        "🔎 Verify recruiter email, phone number and website independently."
     );
 
 
-    /* -----------------------------------------------
-       LIMIT SCORE
-    ------------------------------------------------ */
+    /* =================================================
+       SCORE LIMIT
+    ================================================= */
+
 
     score =
         Math.max(
@@ -834,33 +1276,39 @@ function checkJob(){
         );
 
 
-    /* -----------------------------------------------
-       SHOW RESULT
-    ------------------------------------------------ */
+    /* =================================================
+       DISPLAY
+    ================================================= */
+
 
     const result =
         document.getElementById("result");
 
-    result.style.display = "block";
+
+    result.style.display =
+        "block";
 
 
     const scoreElement =
         document.getElementById("score");
 
-    scoreElement.innerText =
-        score + "%";
-
 
     const badge =
         document.getElementById("badge");
+
 
     const advice =
         document.getElementById("advice");
 
 
-    /* -----------------------------------------------
-       RESULT LEVEL
-    ------------------------------------------------ */
+    scoreElement.innerText =
+        score + "%";
+
+
+    /* =================================================
+       RESULT CATEGORY
+    ================================================= */
+
 
     if(score >= 75){
 
@@ -868,13 +1316,16 @@ function checkJob(){
             "score green";
 
         badge.className =
-            "badge bg-green";
+            "badge badge-green";
 
         badge.innerText =
             "🟢 LOWER RISK — VERIFY";
 
-        advice.innerText =
-            "This check found more positive signals than warning signals. However, a high score does NOT guarantee that the job is genuine. Verify the recruiter and vacancy through the company's official website before sharing documents or accepting the offer.";
+        advice.innerHTML =
+            "<strong>Advice:</strong>" +
+            "The available signals look relatively safer, " +
+            "but this score is NOT proof that the job is genuine. " +
+            "Always verify the vacancy through the company's official website.";
 
     }
 
@@ -885,13 +1336,16 @@ function checkJob(){
             "score yellow";
 
         badge.className =
-            "badge bg-yellow";
+            "badge badge-yellow";
 
         badge.innerText =
             "🟡 SUSPICIOUS — VERIFY CAREFULLY";
 
-        advice.innerText =
-            "Some warning signs were detected. Do not pay money or share Aadhaar, PAN, bank details or OTPs until the recruiter and vacancy are independently verified.";
+        advice.innerHTML =
+            "<strong>Advice:</strong>" +
+            "Several warning signals were detected. " +
+            "Do not pay money or share sensitive documents until " +
+            "the company, recruiter and vacancy are independently verified.";
 
     }
 
@@ -902,25 +1356,30 @@ function checkJob(){
             "score red";
 
         badge.className =
-            "badge bg-red";
+            "badge badge-red";
 
         badge.innerText =
             "🔴 HIGH RISK — DO NOT PAY";
 
-        advice.innerText =
-            "Multiple scam indicators were detected. Stop before making any payment. Verify the company through its official website and report suspicious recruitment activity if necessary.";
+        advice.innerHTML =
+            "<strong>Advice:</strong>" +
+            "Multiple serious warning signals were detected. " +
+            "Stop before making payments or sharing sensitive information. " +
+            "Verify through the company's official channels.";
 
     }
 
 
-    /* -----------------------------------------------
-       DISPLAY CHECKS
-    ------------------------------------------------ */
+    /* =================================================
+       RENDER CHECKS
+    ================================================= */
 
-    const checkContainer =
-        document.getElementById("checks");
 
-    checkContainer.innerHTML = "";
+    const grid =
+        document.getElementById("resultsGrid");
+
+
+    grid.innerHTML = "";
 
 
     checks.forEach(function(item){
@@ -928,20 +1387,24 @@ function checkJob(){
         const div =
             document.createElement("div");
 
+
         div.className =
-            "check";
+            "result-item";
+
 
         div.innerText =
             item;
 
-        checkContainer.appendChild(div);
+
+        grid.appendChild(div);
 
     });
 
 
-    /* -----------------------------------------------
-       SCROLL TO RESULT
-    ------------------------------------------------ */
+    /* =================================================
+       SCROLL
+    ================================================= */
+
 
     window.scrollTo({
 
@@ -955,27 +1418,9 @@ function checkJob(){
 
 }
 
-
-/* =====================================================
-   ENTER KEY SUPPORT
-   ===================================================== */
-
-document
-    .getElementById("companyInput")
-    .addEventListener(
-        "keydown",
-        function(event){
-
-            if(event.key === "Enter"){
-
-                checkJob();
-
-            }
-
-        }
-    );
-
 </script>
 
+
 </body>
+
 </html>
